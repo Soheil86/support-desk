@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const API_URL = '/api/users'
+const API_URL = 'http://localhost:5000/'
 
 // Register user
 const register = async (userData) => {
-  const response = await axios.post(API_URL, userData)
+  const response = await axios.post(API_URL + 'api/users', userData)
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
@@ -12,6 +12,20 @@ const register = async (userData) => {
   return response.data
 }
 
-const authService = { register }
+//LogOut User
+const logout = () => localStorage.removeItem('user')
+
+//LogIn User
+const login = async (userData) => {
+  const response = await axios.post(API_URL + 'api/users/login', userData)
+
+  if (response.data) {
+    console.log(response.data)
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
+  return response.data
+}
+
+const authService = { register, logout, login }
 
 export default authService
