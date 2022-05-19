@@ -39,7 +39,9 @@ if (process.env.NODE_ENV === 'production') {
   )
 } else {
   app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Welcome to the Support Desk Application ' })
+    res
+      .status(200)
+      .json({ message: 'Welcomeeeeeeee to the Support Desk Application ' })
   })
 }
 
